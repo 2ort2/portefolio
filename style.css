@@ -262,10 +262,11 @@ header{
 
    /** Colors:#444; #333; #1c1f2b; sont noir ou variés **/
 
-.container .box-container .box p{
+   .container .box-container .box p {
     color: #fff;
     font-size: 15px;
     line-height: 1.8;
+    
 }
 
 .container .box-container .btn{
@@ -286,6 +287,13 @@ header{
     box-shadow: 0 10px 15px rgbe(0,0,0,0.3);
     transform: scale(1.03);
 }
+
+
+.justify-text {
+    text-align: justify;
+}
+
+
 
 .contact {
     display: flex;
