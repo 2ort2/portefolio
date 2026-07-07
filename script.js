@@ -1,31 +1,56 @@
-// JavaScript pour ajouter l'interactivité
+// Initialize AOS scroll animations
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out',
+  once: true,
+  offset: 80,
+});
 
-    // Changer l'apparence du menu lorsque la page est défilée
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
+// ── Mobile menu ──────────────────────────────────────────────
+const menuBtn    = document.getElementById('menu-btn');
+const menuIcon   = document.getElementById('menu-icon');
+const mobileMenu = document.getElementById('mobile-menu');
 
-    // Bouton retour en haut
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+menuBtn.addEventListener('click', () => {
+  const isHidden = mobileMenu.classList.toggle('hidden');
+  menuIcon.className = isHidden ? 'bx bx-menu' : 'bx bx-x';
+});
 
-    // Affiche le bouton après avoir défilé de 100px
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        scrollTopBtn.style.display = 'block';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-    });
+document.querySelectorAll('.mob-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIcon.className = 'bx bx-menu';
+  });
+});
 
-    // Action du bouton pour remonter en haut
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
+// ── Header shadow on scroll ───────────────────────────────────
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('shadow-2xl', window.scrollY > 50);
+});
+
+// ── Scroll-to-top button ──────────────────────────────────────
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('hidden', window.scrollY < 300);
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Active nav link highlight on scroll ───────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(section => {
+    const top    = section.offsetTop;
+    const height = section.offsetHeight;
+    const id     = section.getAttribute('id');
+    const link   = document.querySelector(`.nav-link[href="#${id}"]`);
+    if (link) {
+      link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+    }
+  });
+});

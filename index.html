@@ -1,319 +1,735 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <script defer src="script.js"></script>
-    <title>Mon Portefolio</title>
-  </head>
-  <body>
-    <section class="base">
-      <div class="container0" id="container">
-        <header class="header">
-          <a href="#home" class="logo">Shalom</a>
+    <title>Shalom TOGBO – Développeur Full Stack</title>
 
-          <nav class="navbar">
-            <a href="#home">Accueil</a>
-            <a href="#about">À propos</a>
-            <a href="#technologies">Technologies</a>
-            <a href="#projects">Projets</a>
-            <a href="#contact">Contacte-moi</a>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary:   '#3b141c',
+              secondary: '#f3961c',
+              dark:      '#252525',
+              darkCard:  '#1c1f2b',
+              light:     '#f0f3fd',
+            },
+            fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      * { font-family: 'Poppins', sans-serif; }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #f0f3fd; }
+      ::-webkit-scrollbar-thumb { background: #3b141c; border-radius: 3px; }
+
+      /* Floating photo animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50%       { transform: translateY(-18px); }
+      }
+      .float-animation { animation: float 4s ease-in-out infinite; }
+
+      /* Active nav highlight */
+      .nav-link.active { color: #f3961c !important; }
+
+      /* Project card image zoom + overlay reveal */
+      .project-card .card-overlay {
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+      .project-card:hover .card-overlay { opacity: 1; }
+      .project-card .card-img { transition: transform 0.5s ease; }
+      .project-card:hover .card-img { transform: scale(1.08); }
+
+      /* Tech card lift */
+      .tech-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .tech-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      }
+
+      /* Gradient underline for section titles */
+      .section-line {
+        background: linear-gradient(90deg, #f3961c, #37a1f2);
+        height: 4px;
+        width: 60px;
+        border-radius: 99px;
+        margin: 12px auto 0;
+      }
+
+      /* Form focus ring */
+      .form-field:focus {
+        border-color: #f3961c;
+        box-shadow: 0 0 0 3px rgba(243,150,28,0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-light text-dark font-poppins">
+
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 bg-primary transition-shadow duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+
+          <!-- Logo -->
+          <a href="#home" class="text-secondary font-extrabold text-2xl md:text-3xl tracking-wide">Shalom</a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#home"         class="nav-link text-white hover:text-secondary font-medium transition-colors duration-300 text-sm">Accueil</a>
+            <a href="#about"        class="nav-link text-white hover:text-secondary font-medium transition-colors duration-300 text-sm">À propos</a>
+            <a href="#technologies" class="nav-link text-white hover:text-secondary font-medium transition-colors duration-300 text-sm">Technologies</a>
+            <a href="#projects"     class="nav-link text-white hover:text-secondary font-medium transition-colors duration-300 text-sm">Projets</a>
+            <a href="#contact"      class="nav-link text-white hover:text-secondary font-medium transition-colors duration-300 text-sm">Contact</a>
           </nav>
 
-          <div class="toogle-icon">
-            <i class="bx bx-moon"></i>
-          </div>
-        </header>
-      </div>
-    </section>
-
-    <section class="home" id="home">
-      <div class="home-content">
-        <h1>Salut, c'est <span>TOGBO Kokou Shalom</span></h1>
-        <h3>Je suis <span>Développeur full stack, formateur informatique et développeur d'affaires</span></h3>
-        <p>
-          Développeur full stack passionné, je conçois et développe des
-          applications web et mobiles performantes, alliant expérience
-          utilisateur et efficacité. En tant que formateur et développeur
-          d’affaires, j’accompagne également les porteurs de projets dans la
-          transformation de leurs idées en solutions numériques concrètes et
-          viables.
-        </p>
-
-        <div class="social-media">
-          <a href="https://github.com/2ort2"><i class="bx bxl-github"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=61573326983889"><i class="bx bxl-facebook"></i></a>
-          <a href="#"><i class="bx bxl-twitter"></i></a>
-          <a href="#"><i class="bx bxl-instagram-alt"></i></a>
-          <a href="https://www.linkedin.com/in/kokou-shalom-togbo-430885268/"><i class="bx bxl-linkedin"></i></a>
+          <!-- Mobile toggle -->
+          <button id="menu-btn" class="md:hidden text-white text-3xl focus:outline-none" aria-label="Menu">
+            <i class="bx bx-menu" id="menu-icon"></i>
+          </button>
         </div>
-
-        <a href="CV_TOGBO_Shalom_Dev_Développeur d'affaire.pdf" class="btn">Télécharger CV</a>
       </div>
 
-      <div class="home-img">
-        <img
-          src="img/shalom.png"
-          width="500"
-          height="500"
-          alt="Portrait de Shalom"
-        />
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden bg-primary border-t border-white/10">
+        <div class="px-6 py-4 flex flex-col gap-2">
+          <a href="#home"         class="mob-link text-white hover:text-secondary py-2 font-medium transition-colors">Accueil</a>
+          <a href="#about"        class="mob-link text-white hover:text-secondary py-2 font-medium transition-colors">À propos</a>
+          <a href="#technologies" class="mob-link text-white hover:text-secondary py-2 font-medium transition-colors">Technologies</a>
+          <a href="#projects"     class="mob-link text-white hover:text-secondary py-2 font-medium transition-colors">Projets</a>
+          <a href="#contact"      class="mob-link text-white hover:text-secondary py-2 font-medium transition-colors">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section id="home" class="min-h-screen flex items-center pt-20 bg-gradient-to-br from-light via-white to-blue-50 relative overflow-hidden">
+
+      <!-- Decorative blobs -->
+      <div class="absolute top-20 right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
+        <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+
+          <!-- Text content -->
+          <div class="flex-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="900">
+            <p class="text-secondary font-semibold tracking-widest uppercase text-xs sm:text-sm mb-3">👋 Bonjour, je suis</p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-dark leading-tight mb-4">
+              TOGBO Kokou<br /><span class="text-secondary">Shalom</span>
+            </h1>
+            <h2 class="text-lg sm:text-2xl font-semibold text-primary mb-6">
+              Développeur Full Stack &amp; <span class="text-blue-500">Formateur IT</span>
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+              Développeur full stack passionné, je conçois et développe des applications web et mobiles
+              performantes, alliant expérience utilisateur et efficacité. J'accompagne également les porteurs
+              de projets dans la transformation de leurs idées en solutions numériques concrètes.
+            </p>
+
+            <!-- Social icons -->
+            <div class="flex justify-center lg:justify-start gap-3 mb-8 flex-wrap">
+              <a href="https://github.com/2ort2" target="_blank" rel="noopener" aria-label="GitHub"
+                 class="w-10 h-10 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary hover:text-dark transition-all duration-300">
+                <i class="bx bxl-github text-lg"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61573326983889" target="_blank" rel="noopener" aria-label="Facebook"
+                 class="w-10 h-10 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary hover:text-dark transition-all duration-300">
+                <i class="bx bxl-facebook text-lg"></i>
+              </a>
+              <a href="#" aria-label="Twitter"
+                 class="w-10 h-10 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary hover:text-dark transition-all duration-300">
+                <i class="bx bxl-twitter text-lg"></i>
+              </a>
+              <a href="#" aria-label="Instagram"
+                 class="w-10 h-10 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary hover:text-dark transition-all duration-300">
+                <i class="bx bxl-instagram-alt text-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/kokou-shalom-togbo-430885268/" target="_blank" rel="noopener" aria-label="LinkedIn"
+                 class="w-10 h-10 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary hover:text-dark transition-all duration-300">
+                <i class="bx bxl-linkedin text-lg"></i>
+              </a>
+            </div>
+
+            <!-- CTA buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="CV_Togbo_Kokou_Shalom.pdf" download
+                 class="bg-primary text-secondary border-2 border-secondary px-8 py-3 rounded-full font-semibold hover:bg-secondary hover:text-dark transition-all duration-300 text-center text-sm">
+                <i class="bx bx-download mr-2"></i>Télécharger CV
+              </a>
+              <a href="#contact"
+                 class="bg-transparent text-primary border-2 border-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 text-center text-sm">
+                Me contacter
+              </a>
+            </div>
+          </div>
+
+          <!-- Photo -->
+          <div class="flex-1 flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="900">
+            <div class="relative">
+              <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-full p-1"
+                   style="background: linear-gradient(135deg, #3b141c, #f3961c);">
+                <div class="w-full h-full rounded-full overflow-hidden bg-light">
+                  <img src="img/shalom2.png" alt="Portrait de Shalom" class="w-full h-full object-cover float-animation" />
+                </div>
+              </div>
+              <span class="absolute bottom-4 right-0 bg-secondary text-dark font-bold px-4 py-2 rounded-xl shadow-lg text-xs">
+                💻 Full Stack Dev
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1">
+        <span class="text-xs text-gray-400 tracking-widest uppercase">Défiler</span>
+        <div class="w-0.5 h-8 bg-gradient-to-b from-secondary to-transparent rounded-full animate-bounce mt-1"></div>
       </div>
     </section>
 
-    <section class="about" id="about">
-      <div class="about-img">
-        <img
-          src="img/shalom.png"
-          width="500"
-          height="500"
-          alt="Présentation à propos"
-        />
-      </div>
-      <div class="about-content">
-        <h2>À propos de <span>moi</span></h2>
-        <p>
-          Je suis un développeur full stack passionné par la création de
-          solutions numériques innovantes, à la fois performantes et centrées
-          sur l'utilisateur. En tant que formateur informatique, j’ai contribué
-          à la montée en compétence de nombreux jeunes sur les technologies web
-          et mobiles. Mon profil hybride de développeur d'affaires me permet
-          d'accompagner les porteurs de projets dans la concrétisation d’idées
-          solides, de la conception technique à la stratégie de mise sur le
-          marché. J’aime relever les défis, partager mes connaissances et bâtir
-          des projets qui ont un réel impact.
-        </p>
-        <a href="#" class="btn">Lire plus</a>
-      </div>
-    </section>
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="py-20 bg-dark text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
-    <section class="services" id="technologies">
-      <div class="container">
-        <h1 class="heading">Technologies</h1>
-
-        <div class="box-container">
-          <!-- Cartes technologies : inchangées sauf alt -->
-          <div class="box">
-            <img src="img/html.png" alt="Logo HTML5" />
-            <h3>HTML5</h3>
-            <p>
-              HTML5 constitue la base de mes développements web. Il me permet de
-              structurer efficacement les pages avec des balises sémantiques
-              modernes, garantissant accessibilité, performance et compatibilité
-              sur tous les navigateurs.
-            </p>
+          <!-- Photo -->
+          <div class="flex-1 flex justify-center" data-aos="fade-right">
+            <div class="relative w-72 sm:w-96 lg:w-[480px]">
+              <img src="img/shalom2.png" alt="À propos de Shalom" class="rounded-2xl w-full object-cover shadow-2xl" />
+              <div class="absolute -bottom-5 -right-5 bg-secondary text-dark font-bold p-4 rounded-xl shadow-lg text-center">
+                <p class="text-2xl font-extrabold leading-none">3+</p>
+                <p class="text-xs font-medium">Années d'exp.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="box">
-            <img src="img/css.png" alt="Logo CSS3" />
-            <h3>CSS3</h3>
-            <p>
-              Grâce à CSS3, je conçois des interfaces web esthétiques,
-              responsives et animées. J’exploite les dernières fonctionnalités
-              comme les flexbox, grid, transitions et animations pour offrir une
-              expérience utilisateur fluide et agréable.
+          <!-- Content -->
+          <div class="flex-1" data-aos="fade-left">
+            <p class="text-secondary font-semibold tracking-widest uppercase text-xs sm:text-sm mb-2">Qui suis-je ?</p>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6">
+              À propos de <span class="text-secondary">moi</span>
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+              Je suis un développeur full stack passionné par la création de solutions numériques innovantes,
+              à la fois performantes et centrées sur l'utilisateur. En tant que formateur informatique, j'ai
+              contribué à la montée en compétence de nombreux jeunes sur les technologies web et mobiles.
             </p>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+              Mon profil hybride de développeur d'affaires me permet d'accompagner les porteurs de projets
+              dans la concrétisation d'idées solides, de la conception technique à la stratégie de mise sur
+              le marché. J'aime relever les défis, partager mes connaissances et bâtir des projets qui ont
+              un réel impact.
+            </p>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="text-center">
+                <p class="text-3xl font-extrabold text-secondary">10+</p>
+                <p class="text-xs text-gray-400 mt-1">Projets réalisés</p>
+              </div>
+              <div class="text-center border-x border-gray-700">
+                <p class="text-3xl font-extrabold text-secondary">20+</p>
+                <p class="text-xs text-gray-400 mt-1">Étudiants formés</p>
+              </div>
+              <div class="text-center">
+                <p class="text-3xl font-extrabold text-secondary">3+</p>
+                <p class="text-xs text-gray-400 mt-1">Années d'exp.</p>
+              </div>
+            </div>
+
+            <a href="CV_Togbo_Kokou_Shalom.pdf" download
+               class="inline-flex items-center gap-2 bg-secondary text-dark px-8 py-3 rounded-full font-bold hover:bg-orange-500 transition-all duration-300 text-sm">
+              <i class="bx bx-download text-lg"></i>Télécharger CV
+            </a>
           </div>
 
-          <div class="box">
-            <img src="img/js.png" alt="Logo JavaScript" />
-            <h3>JavaScript</h3>
-            <p>
-              JavaScript me permet de rendre les interfaces interactives et
-              dynamiques. Je l’utilise pour gérer les événements, manipuler le
-              DOM, et développer des fonctionnalités avancées côté client comme
-              les effets dynamiques, les validations et les requêtes API.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/git.png" alt="Logo GitHub" />
-            <h3>GitHub</h3>
-            <p>
-              Git et GitHub sont au cœur de ma méthodologie de travail. Ils me
-              permettent de collaborer efficacement sur des projets, suivre les
-              évolutions du code, créer des branches de développement et
-              déployer des solutions fiables.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/wordpress0.png" alt="Logo WordPress" />
-            <h3>WordPress</h3>
-            <p>
-              J’utilise WordPress pour concevoir des sites administrables
-              rapidement et efficacement. Je maîtrise l'installation, la
-              personnalisation de thèmes, l’intégration de plugins et
-              l’optimisation SEO pour des sites professionnels.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/php.png" alt="Logo PHP" />
-            <h3>PHP</h3>
-            <p>
-              PHP reste une technologie incontournable pour concevoir des
-              applications robustes et scalables. Je l’ai appliqué dans divers
-              projets allant de simples sites vitrines à des systèmes complexes,
-              en procédural comme en orienté objet.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/laravel.png" alt="Logo Laravel" />
-            <h3>Laravel</h3>
-            <p>
-              Laravel est mon framework PHP de prédilection pour le back-end.
-              Grâce à MVC, au routage clair et à Eloquent, je conçois des
-              applications robustes, sécurisées et maintenables.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/nodejs.png" alt="Logo Node.js" />
-            <h3>Node.js</h3>
-            <p>
-              Avec Node.js, je développe des API REST rapides et évolutives,
-              avec logique métier, sécurité, connexion MongoDB/MySQL, etc.
-            </p>
-          </div>
-
-          <div class="box">
-            <img src="img/angular.png" alt="Logo Angular" />
-            <h3>Angular</h3>
-            <p>
-              Angular est mon framework principal pour le front-end. Ses
-              composants, routing et services injectables permettent de créer
-              des interfaces dynamiques, connectées aux API.
-            </p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="services" id="projects">
-      <div class="container">
-        <h1 class="heading">Mes Projets</h1>
+    <!-- ========== TECHNOLOGIES ========== -->
+    <section id="technologies" class="py-20 bg-light">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="text-secondary font-semibold tracking-widest uppercase text-xs sm:text-sm mb-2">Mon stack</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-dark">Technologies</h2>
+          <div class="section-line"></div>
+        </div>
 
-        <div class="box-container">
-          <div class="box">
-            <img src="img/OrBlanc.png" alt="OrBlanc" style="width: 100%; height: auto;" />
-            <h3>Site vitrine du projet Or Blanc – Valorisation du manioc en amidon industriel </h3>
-            <a href="https://or-blanc.vercel.app/" class="btn" target="_blank">Voir le site</a>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+
+          <!-- HTML5 -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="0">
+            <img src="img/html.png" alt="HTML5" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">HTML5</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Structure sémantique</p>
           </div>
 
-          <!-- Projets suivants (placeholders) -->
-          <div class="box">
-            <img src="img/fruit1.png" alt="OrBlanc" style="width: 100%; height: auto;" />
-            <h3>Site vitrine pour la vente de fruits séchés artisanaux </h3>
-            <a href="https://vente-chips.vercel.app/" class="btn" target="_blank">Voir le site</a>
+          <!-- CSS3 -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="50">
+            <img src="img/css.png" alt="CSS3" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">CSS3</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Flexbox, Grid, Animations</p>
           </div>
 
-          <div class="box">
-            <img src="img/ifind.png" alt="Application web iFind - recherche de prestataires et recrutement" style="width: 100%; height: auto;" />
-            <h3>iFind – Plateforme web de mise en relation entre prestataires et demandeurs d'emploi</h3>
-          
-            <a href="https://github.com/2ort2/ifind" class="btn" target="_blank">Voir sur GitHub</a>
+          <!-- JavaScript -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+            <img src="img/js.png" alt="JavaScript" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">JavaScript</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">ES6+, DOM, API REST</p>
           </div>
 
-          <div class="box">
-            <img src="img/event.png" alt="Application d' évent qui permet l achat des tickets en ligne" />
-            <h3>Application mobile pour acheter des tickets d’événements avec génération de QR code</h3>
-            <a href="https://github.com/2ort2/event" class="btn" target="_blank">Voir sur GitHub</a>
+          <!-- GitHub -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="150">
+            <img src="img/git.png" alt="GitHub" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">GitHub</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Git, branches, CI/CD</p>
           </div>
 
-          <div class="box">
-            <img src="img/python.png" alt="Logiciel de gestion de stock de produits" />
-            <h3>Logiciel de Gestion des Ventes Un logiciel de bureau développé avec Python Tkinter pour gérer efficacement les ventes de produits, le stock et les transactions commerciales. </h3>
-            <a href="https://github.com/2ort2/Gestion_magazin" class="btn" target="_blank">Voir sur GitHub</a>
+          <!-- WordPress -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+            <img src="img/wordpress0.png" alt="WordPress" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">WordPress</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Thèmes, plugins, SEO</p>
           </div>
 
-          <!-- <div class="box">
-            <img src="img/service6.jpg" alt="Projet 6" />
-            <h3>Projet 6</h3>
-            <p>My sixth project ~#</p>
-            <a href="#" class="btn">Lire plus</a>
-          </div> -->
+          <!-- PHP -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="250">
+            <img src="img/php.png" alt="PHP" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">PHP</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">OOP, MVC, Back-end</p>
+          </div>
+
+          <!-- Laravel -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+            <img src="img/laravel.png" alt="Laravel" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">Laravel</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">MVC, Eloquent, Auth</p>
+          </div>
+
+          <!-- Node.js -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="350">
+            <img src="img/nodejs.png" alt="Node.js" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">Node.js</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">API REST, Express</p>
+          </div>
+
+          <!-- Angular -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+            <img src="img/angular.png" alt="Angular" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">Angular</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Composants, Services</p>
+          </div>
+
+          <!-- Flutter -->
+          <div class="tech-card bg-darkCard text-center p-5 rounded-2xl shadow-lg" data-aos="zoom-in" data-aos-delay="450">
+            <img src="img/flutter.png" alt="Flutter" class="w-14 h-14 mx-auto mb-3 object-contain" />
+            <h3 class="text-white font-semibold text-base mb-1">Flutter</h3>
+            <p class="text-gray-400 text-xs hidden sm:block">Apps mobiles cross-platform</p>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <div class="container">
-      <h1 class="heading">Contactez-nous</h1>
-    </div>
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="text-secondary font-semibold tracking-widest uppercase text-xs sm:text-sm mb-2">Mon travail</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-dark">Mes Projets</h2>
+          <div class="section-line"></div>
+        </div>
 
-    <section class="contact" id="contact">
-      <div class="contact-content">
-        <ul class="ct">
-          <li class="ct-info">
-            <i class='bx bx-current-location'></i>
-            <p>BP 1244 Lomé-Togo</p>
-          </li>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          <li class="ct-info">
-            <i class='bx bxs-envelope'></i>
-            <p>togboshalom@gmail.com</p>
-          </li>
+          <!-- ANDASARLU -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="0">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/andasarlu.png" alt="Andasarlu" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://andasarlu.com/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-secondary/20 text-secondary text-xs px-3 py-1 rounded-full self-start mb-3">Web App</span>
+              <h3 class="text-white font-bold text-lg mb-2">Andasarlu</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Plateforme e-commerce pour la vente de toute sorte de produits que ce soit au Togo ou partout dans le monde avec un moyen de paiement sécurisé.</p>
+              <a href="https://andasarlu.com/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
-          <li class="ct-info">
-            <i class='bx bxs-phone'></i>
-            <p>(+228) 97 75 92 32</p>
-          </li>
+          <!-- DOINFINITIVEST -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="100">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/doinfinitivest.png" alt="Doinfinitivest" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://doinfinitivest.com/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-secondary/20 text-secondary text-xs px-3 py-1 rounded-full self-start mb-3">Web App</span>
+              <h3 class="text-white font-bold text-lg mb-2">Doinfinitivest</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Solution numérique complète pour la gestion des portefeuilles de trading .</p>
+              <a href="https://doinfinitivest.com/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
-          <!-- <li class="ct-info">
-            <i class='bx bx-globe'></i>
-            <p>www.seeker-nexus.com</p>
-          </li> -->
-        </ul>
+          <!-- DEYDEY -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/deydey.png" alt="Deydey" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://deydey-app.com/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full self-start mb-3">Mobile App</span>
+              <h3 class="text-white font-bold text-lg mb-2">Deydey</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Application mobile innovante offrant des fonctionnalités avancées, une interface conviviale et des performances optimales conçue par les oppoetunités d'emploi et quelques prestations de services.</p>
+              <a href="https://deydey-app.com/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
-        <form action="https://formspree.io/f/xldbgoyn"
-        method="POST" class="contact-form">
+          <!-- ALT-MOTORS -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="300">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/alt.png" alt="Alt-Motors" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://deydey-app.com/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-secondary/20 text-secondary text-xs px-3 py-1 rounded-full self-start mb-3">Web App</span>
+              <h3 class="text-white font-bold text-lg mb-2">Alt-Motors</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Plateforme automobile moderne permettant la gestion, la location et la vente de véhicules en ligne.</p>
+              <a href="https://deydey-app.com/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
-          <input type="text" placeholder="Votre nom" class="form-input" name="nom"/>
-          <input type="email" placeholder="Votre email" class="form-input" name="email" />
-          <textarea placeholder="Message" class="form-input" name="message"></textarea>
-          <button class="submit-button" type="submit">Envoyer</button>
-        </form>
+          <!-- OR BLANC -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="400">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/OrBlanc.png" alt="Or Blanc" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://or-blanc.vercel.app/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full self-start mb-3">Site vitrine</span>
+              <h3 class="text-white font-bold text-lg mb-2">Or Blanc</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Site vitrine pour la valorisation du manioc en amidon industriel. Design moderne, responsive et performant.</p>
+              <a href="https://or-blanc.vercel.app/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
+          <!-- FRUITS SÉCHÉS -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="500">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/fruit1.png" alt="Vente Fruits Séchés" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://vente-chips.vercel.app/" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bx-link-external"></i>Voir le site
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full self-start mb-3">E-commerce</span>
+              <h3 class="text-white font-bold text-lg mb-2">Fruits Séchés</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Site vitrine pour la vente de fruits séchés artisanaux avec catalogue produits et gestion des commandes.</p>
+              <a href="https://vente-chips.vercel.app/" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir le projet <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
 
+          <!-- IFIND -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="600">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/ifind.png" alt="iFind" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://github.com/2ort2/ifind" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bxl-github"></i>GitHub
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full self-start mb-3">Web App</span>
+              <h3 class="text-white font-bold text-lg mb-2">iFind</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Plateforme web de mise en relation entre prestataires et demandeurs d'emploi avec système de matching.</p>
+              <a href="https://github.com/2ort2/ifind" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir sur GitHub <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- EVENT TICKETS -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="700">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/event.png" alt="Event Tickets" class="card-img w-full h-full object-cover" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://github.com/2ort2/event" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bxl-github"></i>GitHub
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full self-start mb-3">Mobile App</span>
+              <h3 class="text-white font-bold text-lg mb-2">Event Tickets</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Application mobile pour acheter des tickets d'événements avec génération de QR code sécurisé.</p>
+              <a href="https://github.com/2ort2/event" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir sur GitHub <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- GESTION VENTES -->
+          <div class="project-card overflow-hidden rounded-2xl shadow-xl bg-darkCard flex flex-col" data-aos="fade-up" data-aos-delay="800">
+            <div class="relative overflow-hidden h-52">
+              <img src="img/python.png" alt="Gestion des ventes" class="card-img w-full h-full object-cover object-top" />
+              <div class="card-overlay absolute inset-0 bg-primary/85 flex items-center justify-center gap-3">
+                <a href="https://github.com/2ort2/Gestion_magazin" target="_blank" rel="noopener"
+                   class="flex items-center gap-2 bg-secondary text-dark px-5 py-2 rounded-full font-semibold text-sm hover:bg-orange-400 transition-colors">
+                  <i class="bx bxl-github"></i>GitHub
+                </a>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="bg-purple-500/20 text-purple-400 text-xs px-3 py-1 rounded-full self-start mb-3">Desktop</span>
+              <h3 class="text-white font-bold text-lg mb-2">Gestion des Ventes</h3>
+              <p class="text-gray-400 text-sm leading-relaxed flex-1">Logiciel de bureau Python/Tkinter pour gérer efficacement les ventes, le stock et les transactions commerciales.</p>
+              <a href="https://github.com/2ort2/Gestion_magazin" target="_blank" rel="noopener"
+                 class="mt-4 inline-flex items-center gap-2 text-secondary hover:text-orange-400 font-medium text-sm transition-colors">
+                Voir sur GitHub <i class="bx bx-right-arrow-alt text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <footer class="footer-section">
-      <div class="socialicons">
-        <a href="#"><i class="bx bxl-github"></i></a>
-        <a href="#"><i class="bx bxl-facebook"></i></a>
-        <a href="#"><i class="bx bxl-twitter"></i></a>
-        <a href="#"><i class="bx bxl-instagram-alt"></i></a>
-        <a href="#"><i class="bx bxl-linkedin"></i></a>
-        <a href="#"><i class='bx bxl-stack-overflow'></i></a>
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="py-20 bg-dark text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="text-secondary font-semibold tracking-widest uppercase text-xs sm:text-sm mb-2">Travaillons ensemble</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold">Contactez-moi</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+
+          <!-- Info -->
+          <div class="flex-1" data-aos="fade-right">
+            <h3 class="text-xl sm:text-2xl font-bold mb-4 text-secondary">Restons en contact</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-8">
+              Vous avez un projet en tête ? N'hésitez pas à me contacter. Je suis disponible pour discuter
+              de vos idées et vous proposer les meilleures solutions numériques.
+            </p>
+
+            <div class="space-y-5 mb-8">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bx bx-current-location text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-500 text-xs mb-0.5">Adresse</p>
+                  <p class="font-medium text-sm">BP 1244 Lomé, Togo</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bx bxs-envelope text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-500 text-xs mb-0.5">Email</p>
+                  <a href="mailto:togboshalom@gmail.com" class="font-medium text-sm hover:text-secondary transition-colors">togboshalom@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bx bxs-phone text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-500 text-xs mb-0.5">Téléphone</p>
+                  <a href="tel:+22897759232" class="font-medium text-sm hover:text-secondary transition-colors">(+228) 97 75 92 32</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <a href="https://github.com/2ort2" target="_blank" rel="noopener"
+                 class="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center text-secondary hover:bg-secondary hover:text-dark transition-all">
+                <i class="bx bxl-github"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61573326983889" target="_blank" rel="noopener"
+                 class="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center text-secondary hover:bg-secondary hover:text-dark transition-all">
+                <i class="bx bxl-facebook"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/kokou-shalom-togbo-430885268/" target="_blank" rel="noopener"
+                 class="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center text-secondary hover:bg-secondary hover:text-dark transition-all">
+                <i class="bx bxl-linkedin"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="flex-1" data-aos="fade-left">
+            <form id="contact-form" action="https://formspree.io/f/xldbgoyn" method="POST" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-xs text-gray-400 mb-1.5">Votre nom *</label>
+                  <input type="text" name="nom" placeholder="John Doe" required
+                         class="form-field w-full bg-darkCard border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none transition-all text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs text-gray-400 mb-1.5">Votre email *</label>
+                  <input type="email" name="email" placeholder="john@example.com" required
+                         class="form-field w-full bg-darkCard border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none transition-all text-sm" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1.5">Sujet</label>
+                <input type="text" name="sujet" placeholder="Projet web, collaboration..."
+                       class="form-field w-full bg-darkCard border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none transition-all text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1.5">Message *</label>
+                <textarea name="message" placeholder="Décrivez votre projet ou votre demande..." rows="5" required
+                          class="form-field w-full bg-darkCard border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none transition-all resize-none text-sm"></textarea>
+              </div>
+              <button type="submit"
+                      class="w-full bg-secondary text-dark font-bold py-4 rounded-xl hover:bg-orange-500 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                <i class="bx bx-send text-lg"></i>Envoyer le message
+              </button>
+            </form>
+          </div>
+
+        </div>
       </div>
+    </section>
 
-      <div class="footernav">
-        <ul>
-          <li><a href="#home">Accueil</a></li>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#technologies">Technologies</a></li>
-          <li><a href="#projects">Projets</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Politique de confidentialité</a></li>
-          <li><a href="#">Politique de remboursement</a></li>
-        </ul>
-      </div>
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-primary py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Un seul bouton scroll top -->
-      <button id="scrollTopBtn" title="Retour en haut">↑</button>
+        <div class="text-center mb-8">
+          <a href="#home" class="text-secondary font-extrabold text-3xl">Shalom</a>
+          <p class="text-gray-400 mt-2 text-sm">Développeur Full Stack &nbsp;|&nbsp; Lomé, Togo</p>
+        </div>
 
-      <div class="footerbottom">
-        <p class="copyright-text">
-          &copy; 2025. Designé par <span class="designer">Shalom</span>
-        </p>
+        <nav class="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8">
+          <a href="#home"         class="text-gray-400 hover:text-secondary transition-colors text-sm">Accueil</a>
+          <a href="#about"        class="text-gray-400 hover:text-secondary transition-colors text-sm">À propos</a>
+          <a href="#technologies" class="text-gray-400 hover:text-secondary transition-colors text-sm">Technologies</a>
+          <a href="#projects"     class="text-gray-400 hover:text-secondary transition-colors text-sm">Projets</a>
+          <a href="#contact"      class="text-gray-400 hover:text-secondary transition-colors text-sm">Contact</a>
+        </nav>
+
+        <div class="flex justify-center gap-3 mb-8">
+          <a href="https://github.com/2ort2" target="_blank" rel="noopener"
+             class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-secondary hover:text-dark transition-all">
+            <i class="bx bxl-github"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61573326983889" target="_blank" rel="noopener"
+             class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-secondary hover:text-dark transition-all">
+            <i class="bx bxl-facebook"></i>
+          </a>
+          <a href="#"
+             class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-secondary hover:text-dark transition-all">
+            <i class="bx bxl-twitter"></i>
+          </a>
+          <a href="#"
+             class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-secondary hover:text-dark transition-all">
+            <i class="bx bxl-instagram-alt"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/kokou-shalom-togbo-430885268/" target="_blank" rel="noopener"
+             class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-secondary hover:text-dark transition-all">
+            <i class="bx bxl-linkedin"></i>
+          </a>
+        </div>
+
+        <div class="border-t border-white/10 pt-8 text-center">
+          <p class="text-gray-500 text-sm">
+            &copy; 2025 Designé par <span class="text-secondary font-semibold">SHALOM</span>. Tous droits réservés.
+          </p>
+        </div>
+
       </div>
     </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scrollTopBtn" title="Retour en haut"
+      class="hidden fixed bottom-6 right-6 w-12 h-12 bg-secondary text-dark rounded-full shadow-xl flex items-center justify-center text-xl z-50 hover:bg-orange-500 hover:-translate-y-1 transition-all duration-300">
+      <i class="bx bx-up-arrow-alt font-bold"></i>
+    </button>
+
+    <!-- AOS + Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
